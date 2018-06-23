@@ -43,7 +43,22 @@ public interface CookInfoMapper {
 		@Result(property = "cookType",  column = "cook_type"),
 	})
 	List<String> getCookType();
-	
+
+	@Insert("Insert into cook_info (cook_name,cook_type,cook_desc,cook_img,cook_icon) values(#{name},#{cookType},#{description},#{image},#{icon})")
+	public int addCookInfo(CookEntity cookEntity);
+
+	@Insert("Insert into cook_material (cook_id," +
+			"material_id1,material_quality1," +
+			"material_id2,material_quality2," +
+			"material_id3,material_quality3," +
+			"material_id4,material_quality4) " +
+			"FROM cook_material values(#{cook_id}," +
+			"#{ma_id1},#{ma_qa1}," +
+			"#{ma_id2},#{ma_qa2}," +
+			"#{ma_id3},#{ma_qa3}," +
+			"#{ma_id4},#{ma_qa4})")
+	public int addMaterial(CookMaterial cookMaterial);
+
 	  @Insert("insert into cook_select (select_time, select_cooks) values(#{selectTime},#{selectCooks})") 
 	  public int addSelectCook(SelectCook selectCook); 
 	

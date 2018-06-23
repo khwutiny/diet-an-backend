@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.onemenu.entity.LoginUserEntity;
 import com.onemenu.mapper.LoginUserMapper;
@@ -169,10 +171,34 @@ public class BackendController {
 					} else {
 						materialMap.put(id1, (int) cookMaterial.getQuality1());
 					}
-					if (id2 != 0) {
 
+				}
+				if (id2 != 0) {
+					if (materialMap.containsKey(cookMaterial.getId2())) {
+						int quality = (int) materialMap.get(cookMaterial.getId2());
+						int newvalue = quality + cookMaterial.getQuality2();
+						materialMap.replace(id2, newvalue);
 					} else {
+						materialMap.put(id2, (int) cookMaterial.getQuality2());
+					}
+				}
+				if (id3 != 0) {
+					if (materialMap.containsKey(cookMaterial.getId3())) {
+						int quality = (int) materialMap.get(cookMaterial.getId3());
+						int newvalue = quality + cookMaterial.getQuality3();
+						materialMap.replace(id3, newvalue);
+					} else {
+						materialMap.put(id3, (int) cookMaterial.getQuality3());
+					}
 
+				}
+				if (id4 != 0) {
+					if (materialMap.containsKey(cookMaterial.getId1())) {
+						int quality = (int) materialMap.get(cookMaterial.getId4());
+						int newvalue = quality + cookMaterial.getQuality4();
+						materialMap.replace(id4, newvalue);
+					} else {
+						materialMap.put(id4, (int) cookMaterial.getQuality4());
 					}
 				}
 			}
@@ -205,7 +231,21 @@ public class BackendController {
         }
     	return goods;
     }
-    
+
+    @RequestMapping(path = "addCook", method = RequestMethod.POST)
+	@CrossOrigin(origins = "*")
+	public JSONObject addCook(@RequestBody JSONObject food){
+    	JSONObject resJson = new JSONObject();
+    	CookEntity cookEntity = new CookEntity();
+    	cookEntity.setCookType(food.getString("type"));
+		cookEntity.setName(food.getString("name"));
+		cookMapper.addCookInfo(cookEntity);
+		JSONArray itemList = food.getJSONArray("items");
+    	resJson.put("code",0);
+    	resJson.put("msg","add cook success");
+    	return resJson;
+	}
+
     @GetMapping(path="/analysiscook")
     @CrossOrigin(origins = "*")
     public @ResponseBody List<Cooks> analysiscook(String materiallist) {
