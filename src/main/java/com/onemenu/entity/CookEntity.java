@@ -1,6 +1,7 @@
 package com.onemenu.entity;
 
 
+import java.util.List;
 
 public class CookEntity  {
 
@@ -9,8 +10,10 @@ public class CookEntity  {
 	private String cookType;
 	private String description;
 	private String Info;
-	private String icon;
+    private String icon;
 	private String image;
+    private int count;
+    private List<MaterialEntity> cookMaterial;
 
 	public CookEntity() {
 	}
@@ -72,6 +75,21 @@ public class CookEntity  {
 		this.image = cookImg;
 	}
 
+    public List<MaterialEntity> getCookMaterial() {
+        return cookMaterial;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setCookMaterial(List<MaterialEntity> cookMaterial) {
+        this.cookMaterial = cookMaterial;
+    }
 //	@Override
 //	public String toString() {
 //		// TODO Auto-generated method stub

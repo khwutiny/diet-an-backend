@@ -1,5 +1,7 @@
 package com.onemenu.entity;
 
+import java.util.Arrays;
+
 public class LoginUserEntity {
     private String login_user_id;
     private String login_user_account;
@@ -32,6 +34,16 @@ public class LoginUserEntity {
 
     public String getLogin_user_password() {
         return login_user_password;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginUserEntity{" +
+                "login_user_id='" + login_user_id + '\'' +
+                ", login_user_account='" + login_user_account + '\'' +
+                ", login_user_password='" + login_user_password + '\'' +
+                ", user_ids=" + Arrays.toString(user_ids) +
+                '}';
     }
 
     public void setLogin_user_password(String login_user_password) {

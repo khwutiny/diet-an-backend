@@ -17,5 +17,4 @@ public interface LoginUserMapper {
     LoginUserEntity getUser(String login_user_account);
 
 
-
 }

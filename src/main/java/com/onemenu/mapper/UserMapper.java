@@ -26,6 +26,20 @@ public interface UserMapper {
 	})
 	List<UserEntity> getAll();
 
+	@Select("SELECT * FROM users WHERE groupid=#{groupId}")
+	@Results({
+			@Result(property = "sex",  column = "sex", javaType = UserSexEnum.class),
+			@Result(property = "id", column = "id"),
+			@Result(property = "userName", column = "userName"),
+			@Result(property = "height", column = "height"),
+			@Result(property = "weight", column = "weight"),
+			@Result(property = "birthday", column = "birthday"),
+			@Result(property = "nickName", column = "nick_name"),
+			@Result(property = "groupId", column = "groupid")
+
+	})
+	List<UserEntity> getUsersById(String groupId);
+
 	@Select("SELECT * FROM users WHERE id = #{id}")
 	@Results({
 		@Result(property = "sex",  column = "sex", javaType = UserSexEnum.class),

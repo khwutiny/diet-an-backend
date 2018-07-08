@@ -2,6 +2,7 @@ package com.onemenu.mapper;
 
 import java.util.List;
 
+import com.onemenu.entity.MaterialEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
@@ -70,7 +71,8 @@ public interface CookInfoMapper {
 		SelectCook geSelectCook();
 
 		
-		@Select("SELECT cook_id,material_id1,material_quality1, material_id2,material_quality2,material_id3,material_quality3,material_id4,material_quality4 FROM cook_material WHERE cook_id = #{cookId}")
+		@Select("SELECT cook_id,material_id1,material_quality1, material_id2,material_quality2,material_id3," +
+				"material_quality3,material_id4,material_quality4 FROM cook_material WHERE cook_id = #{cookId}")
 		@Results({
 			@Result(property = "cookId",  column = "cook_id"),
 			@Result(property = "id1",  column = "material_id1"),
@@ -86,6 +88,30 @@ public interface CookInfoMapper {
 
 		@Select("select name FROM material WHERE id = #{id}")
 		String getMaterialName(int id);
-		
+
+        @Select("select * FROM material WHERE id = #{id}")
+        @Results({
+                @Result(property = "id",  column = "id"),
+                @Result(property = "name",  column = "cook_name"),
+                @Result(property = "material0",  column = "material0"),
+                @Result(property = "material1",  column = "material1"),
+                @Result(property = "material2", column = "material2"),
+                @Result(property = "material3", column = "material3"),
+                @Result(property = "material4", column = "material4")
+        })
+        MaterialEntity getMaterialInfo(int id);
+
+
+    @Select("select * FROM material WHERE id = #{id}")
+    @Results({
+            @Result(property = "id",  column = "id"),
+            @Result(property = "name",  column = "cook_name"),
+            @Result(property = "material0",  column = "material0"),
+            @Result(property = "material1",  column = "material1"),
+            @Result(property = "material2", column = "material2"),
+            @Result(property = "material3", column = "material3"),
+            @Result(property = "material4", column = "material4")
+    })
+    List getDataById(int id);
 		
 }
