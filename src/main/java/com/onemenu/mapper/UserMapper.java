@@ -51,7 +51,7 @@ public interface UserMapper {
 	})
 	UserEntity getOneById(String id);
 
-	@Insert("INSERT INTO users(userName,height,weight,birthday,sex) VALUES(#{userName}, #{height}, #{weight},#{birthday},#{sex})")
+	@Insert("INSERT INTO users(userName,height,weight,birthday,sex,creatuserid) VALUES(#{userName}, #{height}, #{weight},#{birthday},#{sex},#{creatuserid})")
 	void insert(UserEntity user);
 
 	@Update("UPDATE users SET userName=#{userName},height=#{height},weight=#{weight},birthday=#{birthday} WHERE id =#{id}")

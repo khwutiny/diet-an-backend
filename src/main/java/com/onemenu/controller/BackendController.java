@@ -1,17 +1,13 @@
 package com.onemenu.controller;
 
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.onemenu.entity.*;
 import com.onemenu.mapper.LoginUserMapper;
 import com.onemenu.web.vo.*;
@@ -26,7 +22,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.onemenu.mapper.CookInfoMapper;
 import com.onemenu.mapper.UserMapper;
 
-import static org.aspectj.util.LangUtil.split;
 
 
 @RestController()
@@ -329,6 +324,20 @@ public class BackendController {
     public @ResponseBody
     List<UserEntity> getUsers() {
         return userMapper.getAll();
+    }
+
+    @RequestMapping(path = "/getUsersByLoginUserId")
+    @CrossOrigin(origins = "*")
+    public @ResponseBody
+    List<UserEntity> getUserByLoginUserId(@RequestParam String id) {
+        List<UserEntity> userList = userMapper.getAll();
+        List<UserEntity> _userList = new ArrayList<UserEntity>();
+        for(UserEntity user:userList){
+            if(user.getCreatuserid() != null && user.getCreatuserid().equals(id)){
+                _userList.add(user);
+            }
+        }
+        return _userList;
     }
 
     @RequestMapping(path = "/getUserById")

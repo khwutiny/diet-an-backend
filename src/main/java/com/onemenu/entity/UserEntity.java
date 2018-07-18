@@ -25,6 +25,15 @@ public class UserEntity  {
 	private String weight;
 	private String birthday;
 	private String groupId;
+	private String creatuserid;
+
+	public String getCreatuserid() {
+		return creatuserid;
+	}
+
+	public void setCreatuserid(String creatuserid) {
+		this.creatuserid = creatuserid;
+	}
 
 	public String getGroupId() {
 		return groupId;
